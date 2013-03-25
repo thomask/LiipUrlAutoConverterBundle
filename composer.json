@@ -1,5 +1,5 @@
 {
-    "name": "thomask/url-auto-converter-bundle",
+    "name": "liip/url-auto-converter-bundle",
     "type": "symfony-bundle",
     "description": "Fork of LiipUrlAutoconverterBundle that hacks in some logic for better display of the url for our specific use case",
     "keywords": ["url"],
@@ -21,9 +21,9 @@
         "twig/twig":" >=1.0,<2.0-dev"
     },
     "autoload": {
-        "psr-0": { "Thomask\\UrlAutoConverterBundle": "" }
+        "psr-0": { "Liip\\UrlAutoConverterBundle": "" }
     },
-    "target-dir": "Thomask/UrlAutoConverterBundle",
+    "target-dir": "Liip/UrlAutoConverterBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.x-dev"
