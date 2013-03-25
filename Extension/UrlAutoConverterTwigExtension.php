@@ -69,6 +69,53 @@ class UrlAutoConverterTwigExtension extends \Twig_Extension
 
         $style = ($this->debugMode) ? ' style="color:#00ff00"' : '';
 
-        return '<a href="'.$urlWithPrefix.'" class="'.$this->linkClass.'" target="'.$this->target.'"'.$style.'>'.$url.'</a>';
+        $urlComponents = parse_url($url);
+
+        $displayUrl = '';
+
+        if (array_key_exists('scheme', $urlComponents)) {
+    
+            $displayUrl .= "<span>{$urlComponents['scheme']}://</span><wbr></wbr><span style=\"display: inline-block;\"></span>";
+
+        }
+
+        if (array_key_exists('host', $urlComponents)) {
+            $displayUrl .= "<span>{$urlComponents['host']}</span><wbr></wbr><span style=\"display: inline-block;\"></span>";
+        }
+
+        $path = parse_url($url, PHP_URL_PATH);
+        $segments = explode('/', rtrim($path, '/'));
+
+        foreach ($segments as $segment) {
+
+            $displayUrl .= "<span>{$segment}/</span><wbr></wbr><span style=\"display: inline-block;\"></span>";
+        }
+
+        if (array_key_exists('query', $urlComponents)) {
+
+            $querySegments = explode('&', $urlComponents['query']);
+
+            $displayUrl .= '?';
+
+            $i = 0;
+
+            foreach ($querySegments as $segment) {
+
+                if ($i == 0) {
+
+                    $displayUrl .= "<span>{$segment}</span><wbr></wbr><span style=\"display: inline-block;\"></span>";
+
+                } else {
+
+                    $displayUrl .= "<span>&{$segment}</span><wbr></wbr><span style=\"display: inline-block;\"></span>";
+
+                }
+
+                $i++;
+            }
+
+        }
+
+        return '<a href="'.$urlWithPrefix.'" class="'.$this->linkClass.'" target="'.$this->target.'"'.$style.'>'.$displayUrl.'</a>';
     }
 }
