@@ -116,6 +116,6 @@ class UrlAutoConverterTwigExtension extends \Twig_Extension
 
         }
 
-        return '<a href="'.$urlWithPrefix.'" class="'.$this->linkClass.'" target="'.$this->target.'"'.$style.'>'.$displayUrl.'</a>';
+        return '<a href="'.$urlWithPrefix.'" rel="nofollow" class="'.$this->linkClass.'" target="'.$this->target.'"'.$style.'>'.$displayUrl.'</a>';
     }
 }
