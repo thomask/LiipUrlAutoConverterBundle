@@ -74,7 +74,7 @@ class UrlAutoConverterTwigExtension extends \Twig_Extension
         $displayUrl = '';
 
         if (array_key_exists('scheme', $urlComponents)) {
-    
+
             $displayUrl .= "<span>{$urlComponents['scheme']}://</span><wbr></wbr><span style=\"display: inline-block;\"></span>";
 
         }
@@ -86,9 +86,15 @@ class UrlAutoConverterTwigExtension extends \Twig_Extension
         $path = parse_url($url, PHP_URL_PATH);
         $segments = explode('/', rtrim($path, '/'));
 
+        $i = 0;
+
         foreach ($segments as $segment) {
 
-            $displayUrl .= "<span>{$segment}/</span><wbr></wbr><span style=\"display: inline-block;\"></span>";
+            $displayUrl .= "<span>{$segment}"
+            $displayUrl .= (count($segments) != $i - 1) ? "/" : null;
+            $displayUrl .= "</span><wbr></wbr><span style=\"display: inline-block;\"></span>";
+
+            $i++;
         }
 
         if (array_key_exists('query', $urlComponents)) {
