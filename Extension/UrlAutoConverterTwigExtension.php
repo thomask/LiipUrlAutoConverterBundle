@@ -91,7 +91,7 @@ class UrlAutoConverterTwigExtension extends \Twig_Extension
         foreach ($segments as $segment) {
 
             $displayUrl .= "<span>{$segment}";
-            $displayUrl .= (count($segments) != $i - 1) ? "/" : null;
+            $displayUrl .= (count($segments) != $i + 1) ? "/" : null;
             $displayUrl .= "</span><wbr></wbr><span style=\"display: inline-block;\"></span>";
 
             $i++;
